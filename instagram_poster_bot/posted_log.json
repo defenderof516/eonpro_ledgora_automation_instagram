@@ -1,7 +1,25 @@
 {
-  "posted": [],
-  "history": [],
-  "last_run": null,
-  "total_posts": 0,
+  "posted": [
+    "scene3_features_16-24s.png",
+    "poster06_three_themes.png"
+  ],
+  "history": [
+    {
+      "filename": "scene3_features_16-24s.png",
+      "posted_at": "2026-03-15T08:46:26.179571+00:00",
+      "media_id": "17992829681939192",
+      "caption_preview": "🚀 Take charge of your financial journey! Features 16-24S is just one of the many ways Ledgora helps ...",
+      "cycle": 1
+    },
+    {
+      "filename": "poster06_three_themes.png",
+      "posted_at": "2026-03-15T09:32:51.526122+00:00",
+      "media_id": "17913282873338731",
+      "caption_preview": "💰 Managing your money just got easier! Check out three themes in Ledgora.\n\nTrack every rupee, analyz...",
+      "cycle": 1
+    }
+  ],
+  "last_run": "2026-03-15T09:32:51.526137+00:00",
+  "total_posts": 2,
   "cycle": 1
 }
