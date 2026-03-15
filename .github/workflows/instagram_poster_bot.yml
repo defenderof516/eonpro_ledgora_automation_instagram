@@ -68,7 +68,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd instagram_poster_bot
-          python main.py
+          python -u main.py
 
       # ─── Step 6: Commit Updated Log ───────────────────────────
       - name: 💾 Commit Posted Log
