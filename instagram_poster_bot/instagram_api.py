@@ -116,7 +116,11 @@ def create_instagram_media_container(image_url: str, caption: str) -> str:
     }
 
     response = requests.post(url, params=params, timeout=60)
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        print(f"❌ Graph API Error Data: {e.response.text}")
+        raise e
     result = response.json()
 
     container_id = result.get("id")
@@ -178,7 +182,11 @@ def publish_media(container_id: str) -> str:
     }
 
     response = requests.post(url, params=params, timeout=60)
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        print(f"❌ Graph API Error Data: {e.response.text}")
+        raise e
     result = response.json()
 
     media_id = result.get("id")
