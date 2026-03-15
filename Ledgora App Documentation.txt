@@ -1,0 +1,343 @@
+📘 Ledgora – Use Cases, Features & Functionalities
+🧠 1. Core Purpose
+
+Ledgora is an offline-first personal ledger app that helps users:
+
+• Track income and expenses
+• Organize transactions by categories
+• Monitor balance and cash flow
+• Generate professional reports
+• Analyze spending patterns
+• Set payment reminders
+• Securely backup & restore data (premium)
+
+All with a simple, fast, and modern experience.
+
+👤 2. User Types
+Free User
+
+• Can use all basic ledger features
+• Sees ads
+• Limited advanced features
+
+Premium User (One-Time Purchase)
+
+• No ads
+• Unlimited reports
+• Advanced analytics
+• Google Drive backup & restore
+• More category creation
+• Enhanced experience
+
+🚀 3. Onboarding & First Launch
+Use Cases
+
+• User opens app first time
+• User grants notification permission (politely)
+• User enters name
+• User selects theme
+• User reaches HomeShell
+
+Functionalities
+
+• App logo and motto displayed
+• Name stored locally
+• Theme preference saved
+• First-time guide appears with skip option
+
+🏠 4. HomeShell (Main Screen)
+Use Cases
+
+• View overall balance
+• Navigate between sections
+• Access search
+• Access payment reminders
+
+Functionalities
+
+• App bar with:
+
+Search icon
+
+Payment reminder icon
+• Bottom navigation with 3 tabs:
+
+Total Transactions
+
+Categories
+
+Analytics
+
+💰 5. Total Transactions
+Use Cases
+
+• Add income
+• Add expense
+• View all transactions
+• Edit or delete transaction
+• Search transactions
+• View balance summary
+• Generate reports
+• Backup data (premium)
+
+Functionalities
+
+• Shows:
+
+Total balance
+
+Total income
+
+Total expense
+• Cash In & Cash Out buttons
+• Add transaction requires:
+
+Amount (required)
+
+Details (required)
+
+Date & time
+
+Category
+
+Optional image
+• Swipe left/right:
+
+Edit
+
+Delete (with confirmation)
+• Tap transaction → view full details
+• Share transaction as designed screenshot
+• App bar options:
+
+Search
+
+PDF report generation
+
+Google Drive export/restore (premium)
+
+🗂 6. Transaction Categories
+Use Cases
+
+• View transactions by category
+• Add category (premium)
+• Edit category
+• Delete category
+
+Functionalities
+
+• Horizontal category tabs
+• Each category shows:
+
+Total income
+
+Total expense
+
+Balance
+• Inside category:
+
+Add cash in
+
+Add cash out
+• Free users:
+
+Default categories only
+
+Cannot create new categories
+• Premium users:
+
+Can create unlimited categories
+
+📊 7. Analytics
+Use Cases
+
+• View spending trends
+• Understand income vs expense
+• Compare categories
+• Track monthly patterns
+
+Functionalities
+Free User
+
+• Basic charts
+• Total income vs expense
+• Overall summary
+
+Premium User
+
+• Category-wise analytics
+• Monthly trends
+• Net cash flow
+• Advanced charts and insights
+
+⏰ 8. Payment Reminders
+Use Cases
+
+• Set reminder to pay someone
+• Set reminder to collect payment
+• Receive notification at chosen date & time
+• Open reminder from notification
+
+Functionalities
+
+• Add reminder:
+
+Title
+
+Amount
+
+Date
+
+Time
+• Validation for all fields
+• Notification works:
+
+Foreground
+
+Background
+• Clicking notification opens Payment Reminder page
+• Reminder list:
+
+Enable/disable
+
+Edit
+
+Delete
+
+🔍 9. Search
+Use Cases
+
+• Find transaction quickly
+
+Functionalities
+
+• Full screen search page
+• Search by:
+
+Amount
+
+Details
+
+Category
+• Live filtering
+
+📄 10. Reports (PDF)
+Use Cases
+
+• Generate financial report
+• Share report
+
+Functionalities
+
+• Professional PDF format
+• Contains:
+
+User name
+
+Date range
+
+Totals
+
+Transactions
+• Free user:
+
+Must watch ad before generation
+• Premium user:
+
+Unlimited reports
+
+No ads
+
+☁️ 11. Backup & Restore (Premium Only)
+Use Cases
+
+• Backup data to Google Drive
+• Restore data from Google Drive
+• Auto restore after reinstall
+
+Functionalities
+
+• Manual backup
+• Manual restore
+• Automatic restore on fresh install
+• Progress animation during sync
+
+🎨 12. Themes
+Use Cases
+
+• Personalize app look
+
+Functionalities
+
+• 3 premium themes
+• Theme applies to:
+
+App bars
+
+Buttons
+
+Cards
+
+Charts
+• Theme change saved locally
+
+💎 13. Premium Upgrade
+Use Cases
+
+• Unlock full experience
+
+Premium Unlocks
+
+• No ads
+• Unlimited categories
+• Unlimited reports
+• Advanced analytics
+• Google Drive backup & restore
+
+📢 14. Ads Behavior (Free Users)
+
+• Banner ads in spaced areas
+• Interstitial ad:
+
+After 1 minute usage
+
+During report generation
+• Rewarded ads only when user triggers
+
+Premium users see zero ads.
+
+🧭 15. App Guide / Walkthrough
+Use Cases
+
+• Help new users understand features
+
+Functionalities
+
+• Tooltip style hints
+• Arrows pointing to UI
+• Skip option
+• Includes explanation for:
+
+Add transaction
+
+Categories
+
+Analytics
+
+Payment reminders
+
+🔐 16. Data Safety
+
+• All data stored locally by default
+• No account required
+• Google Drive used only for backup (premium)
+
+🏁 17. Success Criteria
+
+Ledgora is successful if:
+
+• Users can record transactions in seconds
+• Balance always accurate
+• App feels smooth and modern
+• No data loss
+• Premium features clearly valuable

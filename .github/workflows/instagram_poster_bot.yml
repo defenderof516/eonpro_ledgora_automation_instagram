@@ -1,0 +1,100 @@
+name: 📸 Daily Instagram Poster Bot
+
+on:
+  # ─── Daily Cron Schedule ────────────────────────────────────────
+  # Runs daily at a randomized time window (8:00 AM IST / 2:30 AM UTC)
+  # The bot itself adds random delays between posts for humanization
+  schedule:
+    - cron: '30 2 * * *'   # 8:00 AM IST daily
+
+  # ─── Manual Trigger ────────────────────────────────────────────
+  workflow_dispatch:
+    inputs:
+      force_run:
+        description: 'Force run the poster bot'
+        required: false
+        default: 'true'
+        type: boolean
+
+# ─── Permissions ────────────────────────────────────────────────
+permissions:
+  contents: write  # Needed to commit posted_log.json updates
+
+jobs:
+  post-to-instagram:
+    name: 🚀 Post Ledgora Posters to Instagram
+    runs-on: ubuntu-latest
+    timeout-minutes: 120  # Allow up to 2 hours for delays between posts
+
+    steps:
+      # ─── Step 1: Checkout Repository ────────────────────────────
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ─── Step 2: Setup Python ──────────────────────────────────
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'instagram_poster_bot/requirements.txt'
+
+      # ─── Step 3: Install Dependencies ──────────────────────────
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r instagram_poster_bot/requirements.txt
+
+      # ─── Step 4: Add Random Start Delay (Humanization) ────────
+      - name: ⏰ Random Start Delay
+        run: |
+          # Random delay between 0-45 minutes for humanized scheduling
+          DELAY=$((RANDOM % 2700))
+          echo "🕐 Adding random start delay of $((DELAY / 60)) minutes $((DELAY % 60)) seconds..."
+          sleep $DELAY
+          echo "✅ Start delay complete. Beginning posting..."
+
+      # ─── Step 5: Run the Bot ───────────────────────────────────
+      - name: 📸 Run Instagram Poster Bot
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
+          GITHUB_REPO_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPO_NAME: ${{ github.event.repository.name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd instagram_poster_bot
+          python main.py
+
+      # ─── Step 6: Commit Updated Log ───────────────────────────
+      - name: 💾 Commit Posted Log
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Instagram Poster Bot"
+          git add instagram_poster_bot/posted_log.json
+          git diff --staged --quiet || git commit -m "📸 Update posted log - $(date +'%Y-%m-%d')"
+          git push
+        continue-on-error: true  # Don't fail the workflow if commit fails
+
+      # ─── Step 7: Summary ───────────────────────────────────────
+      - name: 📋 Job Summary
+        if: always()
+        run: |
+          echo "## 📸 Instagram Poster Bot Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f instagram_poster_bot/posted_log.json ]; then
+            TOTAL=$(python3 -c "import json; d=json.load(open('instagram_poster_bot/posted_log.json')); print(d.get('total_posts', 0))")
+            CYCLE=$(python3 -c "import json; d=json.load(open('instagram_poster_bot/posted_log.json')); print(d.get('cycle', 1))")
+            POSTED=$(python3 -c "import json; d=json.load(open('instagram_poster_bot/posted_log.json')); print(len(d.get('posted', [])))")
+            echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| Total Posts Ever | $TOTAL |" >> $GITHUB_STEP_SUMMARY
+            echo "| Current Cycle | $CYCLE |" >> $GITHUB_STEP_SUMMARY
+            echo "| Posted This Cycle | $POSTED |" >> $GITHUB_STEP_SUMMARY
+          fi
