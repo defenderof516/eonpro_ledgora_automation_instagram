@@ -48,13 +48,13 @@ jobs:
           pip install -r instagram_poster_bot/requirements.txt
 
       # ─── Step 4: Add Random Start Delay (Humanization) ────────
-      - name: ⏰ Random Start Delay
-        run: |
-          # Random delay between 0-45 minutes for humanized scheduling
-          DELAY=$((RANDOM % 2700))
-          echo "🕐 Adding random start delay of $((DELAY / 60)) minutes $((DELAY % 60)) seconds..."
-          sleep $DELAY
-          echo "✅ Start delay complete. Beginning posting..."
+      # - name: ⏰ Random Start Delay
+      #   run: |
+      #     # Random delay between 0-45 minutes for humanized scheduling
+      #     DELAY=$((RANDOM % 2700))
+      #     echo "🕐 Adding random start delay of $((DELAY / 60)) minutes $((DELAY % 60)) seconds..."
+      #     sleep $DELAY
+      #     echo "✅ Start delay complete. Beginning posting..."
 
       # ─── Step 5: Run the Bot ───────────────────────────────────
       - name: 📸 Run Instagram Poster Bot
