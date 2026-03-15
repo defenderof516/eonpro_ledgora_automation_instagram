@@ -115,7 +115,7 @@ def create_instagram_media_container(image_url: str, caption: str) -> str:
         "access_token": INSTAGRAM_ACCESS_TOKEN,
     }
 
-    response = requests.post(url, params=params, timeout=60)
+    response = requests.post(url, data=params, timeout=60)
     try:
         response.raise_for_status()
     except requests.exceptions.HTTPError as e:
@@ -181,7 +181,7 @@ def publish_media(container_id: str) -> str:
         "access_token": INSTAGRAM_ACCESS_TOKEN,
     }
 
-    response = requests.post(url, params=params, timeout=60)
+    response = requests.post(url, data=params, timeout=60)
     try:
         response.raise_for_status()
     except requests.exceptions.HTTPError as e:
