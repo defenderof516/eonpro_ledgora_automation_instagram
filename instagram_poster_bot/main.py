@@ -24,6 +24,7 @@ from config import (
 from poster_manager import select_posters_for_today, mark_as_posted, get_posting_stats
 from caption_generator import generate_caption
 from instagram_api import post_to_instagram, verify_token
+from notifier import notify_start, notify_end, notify_error
 
 
 def print_banner():
@@ -118,6 +119,7 @@ def run_daily_posting():
     # Step 1: Validate
     if not validate_config():
         print("\n❌ Bot cannot run without proper configuration. Exiting.")
+        notify_error(run_time, "Configuration errors - missing required environment variables.")
         sys.exit(1)
 
     # Step 2: Verify token
@@ -125,6 +127,7 @@ def run_daily_posting():
     if not verify_token():
         print("❌ Instagram token is invalid or expired!")
         print("   Please update the INSTAGRAM_ACCESS_TOKEN secret.")
+        notify_error(run_time, "Instagram token is invalid or expired!")
         sys.exit(1)
 
     # Step 3: Show stats
@@ -139,7 +142,10 @@ def run_daily_posting():
 
     if not selected:
         print("❌ No posters available to post!")
+        notify_error(run_time, "No posters available to post!")
         sys.exit(1)
+
+    notify_start(run_time, stats, selected)
 
     # Step 5: Post each poster with delays
     results = []
@@ -205,6 +211,8 @@ def run_daily_posting():
     duration = (datetime.now(timezone.utc) - run_time).total_seconds()
     print(f"\n⏱️ Total run duration: {duration // 60:.0f}m {duration % 60:.0f}s")
     print(f"🏁 Bot run completed at: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}")
+
+    notify_end(run_time, results, stats)
 
     if fail_count > 0:
         sys.exit(1)  # Signal failure to GitHub Actions

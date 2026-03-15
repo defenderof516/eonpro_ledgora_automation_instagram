@@ -65,6 +65,9 @@ Available on Google Play Store.
 Download link: https://play.google.com/store/apps/details?id=com.eonpro.ledgora
 """
 
+# ─── Discord Notifications (optional, free) ─────────────────────
+DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "")
+
 # ─── Image Hosting (GitHub raw URLs - completely free) ───────────
 # Uses raw.githubusercontent.com (images already in repo)
 # Falls back to GitHub API upload for private repos
