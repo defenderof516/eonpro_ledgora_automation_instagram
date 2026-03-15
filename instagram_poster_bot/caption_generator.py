@@ -4,15 +4,14 @@ Generates engaging, humanized Instagram captions for Ledgora app posters.
 """
 
 import random
-import google.generativeai as genai
+from google import genai
 from config import GEMINI_API_KEY, APP_CONTEXT, BASE_HASHTAGS
 
 
 def initialize_gemini():
-    """Initialize the Gemini AI model."""
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel("gemini-2.0-flash")
-    return model
+    """Initialize the Gemini AI model client."""
+    client = genai.Client(api_key=GEMINI_API_KEY)
+    return client
 
 
 def extract_poster_theme(filename: str) -> str:
@@ -55,7 +54,7 @@ def generate_caption(poster_filename: str, style: str = None) -> str:
     Returns:
         Generated caption with hashtags
     """
-    model = initialize_gemini()
+    client = initialize_gemini()
     theme = extract_poster_theme(poster_filename)
 
     # Randomly pick a caption style for humanization
@@ -107,7 +106,10 @@ Return ONLY the caption text, nothing else.
 """
 
     try:
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt,
+        )
         caption = response.text.strip()
 
         # Add hashtags
