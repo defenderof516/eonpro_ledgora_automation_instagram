@@ -1,0 +1,6 @@
+{
+  "enabledMcpjsonServers": [
+    "voicemode-dev"
+  ],
+  "enableAllProjectMcpServers": true
+}

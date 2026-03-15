@@ -1,58 +1,76 @@
 """
 Instagram Graph API integration for publishing posts.
-Handles image upload and post creation via the Instagram Graph API.
+Handles image hosting via GitHub raw URLs and post creation via the Instagram Graph API.
 """
 
+import os
 import time
+import base64
+import urllib.parse
 import requests
 from config import (
     INSTAGRAM_ACCESS_TOKEN,
     INSTAGRAM_ACCOUNT_ID,
     GRAPH_API_BASE,
-    IMGBB_API_KEY,
+    GITHUB_REPO_OWNER,
+    GITHUB_REPO_NAME,
+    GITHUB_TOKEN,
 )
-import base64
 
 
-def upload_image_to_imgbb(image_path: str) -> str:
+def get_public_image_url(image_path: str) -> str:
     """
-    Upload an image to ImgBB (free image hosting) and return the public URL.
-    Instagram Graph API requires a publicly accessible image URL.
+    Get a publicly accessible URL for the poster image.
+
+    Primary: Uses raw.githubusercontent.com (images already committed to repo - free).
+    Fallback: Uploads via GitHub API (for private repos).
 
     Args:
         image_path: Local path to the image file
 
     Returns:
-        Public URL of the uploaded image
+        Public URL of the image
     """
-    print(f"📤 Uploading image to ImgBB: {image_path}")
+    filename = os.path.basename(image_path)
+    encoded_filename = urllib.parse.quote(filename)
 
-    with open(image_path, "rb") as f:
-        image_data = base64.b64encode(f.read()).decode("utf-8")
+    if not GITHUB_REPO_OWNER or not GITHUB_REPO_NAME:
+        raise Exception(
+            "GITHUB_REPO_OWNER and GITHUB_REPO_NAME are required for image hosting."
+        )
 
-    url = "https://api.imgbb.com/1/upload"
-    payload = {
-        "key": IMGBB_API_KEY,
-        "image": image_data,
-        "expiration": 86400,  # 24 hours (we only need it temporarily)
-    }
+    # Primary: raw.githubusercontent.com (works for public repos, no upload needed)
+    raw_url = (
+        f"https://raw.githubusercontent.com/{GITHUB_REPO_OWNER}/{GITHUB_REPO_NAME}"
+        f"/main/Eonpro_Ledgora_Posters/{encoded_filename}"
+    )
 
-    response = requests.post(url, data=payload, timeout=120)
-    response.raise_for_status()
-    result = response.json()
+    try:
+        resp = requests.head(raw_url, timeout=15, allow_redirects=True)
+        if resp.status_code == 200:
+            print(f"🔗 Image URL (GitHub raw): {raw_url}")
+            return raw_url
+    except Exception:
+        pass
 
-    if result.get("success"):
-        image_url = result["data"]["url"]
-        print(f"✅ Image uploaded: {image_url}")
-        return image_url
-    else:
-        raise Exception(f"ImgBB upload failed: {result}")
+    # Fallback: Upload via GitHub API (works for private repos)
+    if GITHUB_TOKEN:
+        print("📤 Raw URL not accessible, uploading via GitHub API...")
+        return upload_image_via_github_api(
+            image_path, GITHUB_REPO_OWNER, GITHUB_REPO_NAME, GITHUB_TOKEN
+        )
+
+    raise Exception(
+        "Cannot get public image URL. Ensure the repo is public or GITHUB_TOKEN is set."
+    )
 
 
-def upload_image_via_github_raw(image_path: str, repo_owner: str, repo_name: str, github_token: str) -> str:
+def upload_image_via_github_api(
+    image_path: str, repo_owner: str, repo_name: str, github_token: str
+) -> str:
     """
-    Alternative: Upload image to GitHub repo and use raw URL.
-    This is a fallback if ImgBB is not configured.
+    Upload image to GitHub repo and use raw URL.
+    Fallback for when raw.githubusercontent.com is not accessible (private repos).
 
     Args:
         image_path: Local path to the image file
@@ -63,7 +81,6 @@ def upload_image_via_github_raw(image_path: str, repo_owner: str, repo_name: str
     Returns:
         Raw GitHub URL for the image
     """
-    import os
     filename = os.path.basename(image_path)
     upload_path = f"temp_uploads/{filename}"
 
@@ -90,7 +107,11 @@ def upload_image_via_github_raw(image_path: str, repo_owner: str, repo_name: str
     response.raise_for_status()
 
     # Use raw.githubusercontent.com URL
-    raw_url = f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{upload_path}"
+    encoded_filename = urllib.parse.quote(filename)
+    raw_url = (
+        f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}"
+        f"/main/{upload_path}"
+    )
     print(f"✅ Image uploaded to GitHub: {raw_url}")
     return raw_url
 
@@ -199,7 +220,7 @@ def publish_media(container_id: str) -> str:
 
 def post_to_instagram(image_path: str, caption: str) -> str:
     """
-    Full flow: Upload image → Create container → Publish.
+    Full flow: Get public URL → Create container → Publish.
 
     Args:
         image_path: Local path to the poster image
@@ -208,19 +229,8 @@ def post_to_instagram(image_path: str, caption: str) -> str:
     Returns:
         Published media ID
     """
-    from config import GITHUB_REPO_OWNER, GITHUB_REPO_NAME, GITHUB_TOKEN
-
-    # Step 1: Upload image to get a public URL
-    if IMGBB_API_KEY:
-        image_url = upload_image_to_imgbb(image_path)
-    elif GITHUB_REPO_OWNER and GITHUB_REPO_NAME and GITHUB_TOKEN:
-        image_url = upload_image_via_github_raw(
-            image_path, GITHUB_REPO_OWNER, GITHUB_REPO_NAME, GITHUB_TOKEN
-        )
-    else:
-        raise Exception(
-            "No image hosting configured! Set IMGBB_API_KEY or GitHub repo details."
-        )
+    # Step 1: Get a public URL for the image
+    image_url = get_public_image_url(image_path)
 
     # Step 2: Create media container
     container_id = create_instagram_media_container(image_url, caption)

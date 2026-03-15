@@ -1,17 +1,12 @@
 """
-AI Caption Generator using Google Gemini (Free Tier).
+AI Caption Generator using Hugging Face Inference API (Free Tier).
 Generates engaging, humanized Instagram captions for Ledgora app posters.
 """
 
 import random
-from google import genai
-from config import GEMINI_API_KEY, APP_CONTEXT, BASE_HASHTAGS
-
-
-def initialize_gemini():
-    """Initialize the Gemini AI model client."""
-    client = genai.Client(api_key=GEMINI_API_KEY)
-    return client
+import time
+import requests
+from config import HF_API_TOKEN, HF_MODEL, APP_CONTEXT, BASE_HASHTAGS
 
 
 def extract_poster_theme(filename: str) -> str:
@@ -43,6 +38,81 @@ def get_random_hashtags(count: int = 15) -> str:
     return " ".join(selected)
 
 
+def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
+    """
+    Call Hugging Face Inference API with retry logic for model loading.
+
+    Args:
+        prompt: The prompt text
+        max_retries: Maximum number of retries if model is loading
+
+    Returns:
+        Generated text
+    """
+    url = f"https://api-inference.huggingface.co/models/{HF_MODEL}/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {HF_API_TOKEN}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": HF_MODEL,
+        "messages": [
+            {"role": "user", "content": prompt}
+        ],
+        "max_tokens": 500,
+        "temperature": 0.8,
+        "stream": False,
+    }
+
+    for attempt in range(max_retries + 1):
+        response = requests.post(url, headers=headers, json=payload, timeout=120)
+
+        if response.status_code == 503:
+            # Model is loading (cold start)
+            try:
+                wait_time = response.json().get("estimated_time", 30)
+            except Exception:
+                wait_time = 30
+            actual_wait = min(wait_time + 5, 65)
+            print(f"⏳ Model loading, waiting {actual_wait:.0f}s... (attempt {attempt + 1}/{max_retries + 1})")
+            time.sleep(actual_wait)
+            continue
+
+        if response.status_code == 422:
+            # Chat completions not supported, fall back to text generation
+            return _call_hf_text_generation(prompt)
+
+        response.raise_for_status()
+        result = response.json()
+        return result["choices"][0]["message"]["content"].strip()
+
+    raise Exception(f"HF API: Model failed to load after {max_retries + 1} attempts")
+
+
+def _call_hf_text_generation(prompt: str) -> str:
+    """
+    Fallback: Use HF text generation endpoint (non-chat format).
+    """
+    url = f"https://api-inference.huggingface.co/models/{HF_MODEL}"
+    headers = {
+        "Authorization": f"Bearer {HF_API_TOKEN}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "inputs": prompt,
+        "parameters": {
+            "max_new_tokens": 500,
+            "temperature": 0.8,
+            "return_full_text": False,
+        },
+    }
+
+    response = requests.post(url, headers=headers, json=payload, timeout=120)
+    response.raise_for_status()
+    result = response.json()
+    return result[0]["generated_text"].strip()
+
+
 def generate_caption(poster_filename: str, style: str = None) -> str:
     """
     Generate an engaging Instagram caption for a Ledgora poster.
@@ -54,7 +124,6 @@ def generate_caption(poster_filename: str, style: str = None) -> str:
     Returns:
         Generated caption with hashtags
     """
-    client = initialize_gemini()
     theme = extract_poster_theme(poster_filename)
 
     # Randomly pick a caption style for humanization
@@ -106,11 +175,10 @@ Return ONLY the caption text, nothing else.
 """
 
     try:
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=prompt,
-        )
-        caption = response.text.strip()
+        caption = _call_hf_api(prompt)
+
+        # Clean up any markdown artifacts the model might produce
+        caption = caption.replace("**", "").replace("##", "").replace("# ", "")
 
         # Add hashtags
         hashtags = get_random_hashtags(random.randint(10, 18))
@@ -119,7 +187,7 @@ Return ONLY the caption text, nothing else.
         return full_caption
 
     except Exception as e:
-        print(f"⚠️ Gemini API error: {e}")
+        print(f"⚠️ Hugging Face API error: {e}")
         # Fallback captions if AI fails
         return generate_fallback_caption(theme)
 

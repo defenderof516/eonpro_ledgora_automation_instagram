@@ -11,9 +11,9 @@ INSTAGRAM_ACCOUNT_ID = os.environ.get("INSTAGRAM_ACCOUNT_ID", "")
 GRAPH_API_VERSION = "v21.0"
 GRAPH_API_BASE = f"https://graph.facebook.com/{GRAPH_API_VERSION}"
 
-# ─── Gemini AI (Free Tier) ────────────────────────────────────────
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_MODEL = "gemini-2.0-flash"  # Free tier model
+# ─── Hugging Face AI (Free Tier) ─────────────────────────────────
+HF_API_TOKEN = os.environ.get("HF_API_TOKEN", "")
+HF_MODEL = os.environ.get("HF_MODEL", "mistralai/Mistral-7B-Instruct-v0.3")
 
 # ─── Posting Configuration ────────────────────────────────────────
 MIN_POSTS_PER_DAY = 2
@@ -65,12 +65,9 @@ Available on Google Play Store.
 Download link: https://play.google.com/store/apps/details?id=com.eonpro.ledgora
 """
 
-# ─── Image Hosting (using GitHub raw content as free image host) ──
-# We'll upload images to a public hosting service or use the repo itself
+# ─── Image Hosting (GitHub raw URLs - completely free) ───────────
+# Uses raw.githubusercontent.com (images already in repo)
+# Falls back to GitHub API upload for private repos
 GITHUB_REPO_OWNER = os.environ.get("GITHUB_REPO_OWNER", "")
 GITHUB_REPO_NAME = os.environ.get("GITHUB_REPO_NAME", "")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")  # Auto-provided by GitHub Actions
-
-# ─── Image Upload Service ────────────────────────────────────────
-# Using imgbb.com free tier (or fallback to GitHub raw content)
-IMGBB_API_KEY = os.environ.get("IMGBB_API_KEY", "")
