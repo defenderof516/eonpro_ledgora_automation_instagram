@@ -38,46 +38,10 @@ def get_random_hashtags(count: int = 15) -> str:
     return " ".join(selected)
 
 
-_cached_provider = None  # (url, provider_model_id)
-
-
-def _resolve_hf_provider() -> tuple:
-    """
-    Auto-discover which inference provider hosts the model.
-    Returns (chat_completions_url, provider_model_id).  Cached for the session.
-    """
-    global _cached_provider
-    if _cached_provider:
-        return _cached_provider
-
-    headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
-
-    try:
-        resp = requests.get(
-            f"https://huggingface.co/api/models/{HF_MODEL}",
-            params={"expand[]": "inferenceProviderMapping"},
-            headers=headers,
-            timeout=15,
-        )
-        resp.raise_for_status()
-        providers = resp.json().get("inferenceProviderMapping", {})
-
-        for provider_name, info in providers.items():
-            if info.get("status") == "live" and info.get("task") == "conversational":
-                provider_model_id = info["providerId"]
-                url = f"https://router.huggingface.co/{provider_name}/v1/chat/completions"
-                _cached_provider = (url, provider_model_id)
-                print(f"🤖 Using HF provider: {provider_name} → {provider_model_id}")
-                return _cached_provider
-    except Exception as e:
-        print(f"⚠️ Provider discovery failed: {e}")
-
-    raise Exception(f"No live inference provider found for {HF_MODEL}")
-
-
 def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
     """
-    Call Hugging Face Inference API with retry logic for model loading.
+    Call Hugging Face Inference Providers router.
+    The router auto-selects the fastest available provider for the model.
 
     Args:
         prompt: The prompt text
@@ -86,13 +50,13 @@ def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
     Returns:
         Generated text
     """
-    url, provider_model_id = _resolve_hf_provider()
+    url = "https://router.huggingface.co/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {HF_API_TOKEN}",
         "Content-Type": "application/json",
     }
     payload = {
-        "model": provider_model_id,
+        "model": HF_MODEL,
         "messages": [
             {"role": "user", "content": prompt}
         ],
@@ -105,7 +69,6 @@ def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
         response = requests.post(url, headers=headers, json=payload, timeout=120)
 
         if response.status_code == 503:
-            # Model is loading (cold start)
             try:
                 wait_time = response.json().get("estimated_time", 30)
             except Exception:
