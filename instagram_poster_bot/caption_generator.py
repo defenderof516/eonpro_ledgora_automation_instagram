@@ -65,10 +65,7 @@ def _resolve_hf_provider() -> tuple:
         for provider_name, info in providers.items():
             if info.get("status") == "live" and info.get("task") == "conversational":
                 provider_model_id = info["providerId"]
-                url = (
-                    f"https://router.huggingface.co/{provider_name}"
-                    f"/models/{provider_model_id}/v1/chat/completions"
-                )
+                url = f"https://router.huggingface.co/{provider_name}/v1/chat/completions"
                 _cached_provider = (url, provider_model_id)
                 print(f"🤖 Using HF provider: {provider_name} → {provider_model_id}")
                 return _cached_provider
