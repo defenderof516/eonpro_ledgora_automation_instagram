@@ -13,7 +13,7 @@ GRAPH_API_BASE = f"https://graph.facebook.com/{GRAPH_API_VERSION}"
 
 # ─── Hugging Face AI (Free Tier) ─────────────────────────────────
 HF_API_TOKEN = os.environ.get("HF_API_TOKEN", "")
-HF_MODEL = os.environ.get("HF_MODEL", "google/gemma-2-2b-it")
+HF_MODEL = os.environ.get("HF_MODEL", "meta-llama/Llama-3.1-8B-Instruct")
 
 # ─── Posting Configuration ────────────────────────────────────────
 MIN_POSTS_PER_DAY = 2

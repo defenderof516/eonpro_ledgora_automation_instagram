@@ -38,6 +38,45 @@ def get_random_hashtags(count: int = 15) -> str:
     return " ".join(selected)
 
 
+_cached_hf_url = None
+
+
+def _resolve_hf_url() -> str:
+    """
+    Auto-discover which inference provider hosts the model and return the
+    correct chat completions URL.  Result is cached for the session.
+    """
+    global _cached_hf_url
+    if _cached_hf_url:
+        return _cached_hf_url
+
+    headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
+
+    try:
+        resp = requests.get(
+            f"https://huggingface.co/api/models/{HF_MODEL}",
+            params={"expand[]": "inferenceProviderMapping"},
+            headers=headers,
+            timeout=15,
+        )
+        resp.raise_for_status()
+        providers = resp.json().get("inferenceProviderMapping", {})
+
+        for provider_name, info in providers.items():
+            if info.get("status") == "live" and info.get("task") == "conversational":
+                provider_model_id = info["providerId"]
+                _cached_hf_url = (
+                    f"https://router.huggingface.co/{provider_name}"
+                    f"/models/{provider_model_id}/v1/chat/completions"
+                )
+                print(f"🤖 Using HF provider: {provider_name}")
+                return _cached_hf_url
+    except Exception as e:
+        print(f"⚠️ Provider discovery failed: {e}")
+
+    raise Exception(f"No live inference provider found for {HF_MODEL}")
+
+
 def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
     """
     Call Hugging Face Inference API with retry logic for model loading.
@@ -49,7 +88,7 @@ def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
     Returns:
         Generated text
     """
-    url = f"https://router.huggingface.co/hf-inference/models/{HF_MODEL}/v1/chat/completions"
+    url = _resolve_hf_url()
     headers = {
         "Authorization": f"Bearer {HF_API_TOKEN}",
         "Content-Type": "application/json",
@@ -78,39 +117,11 @@ def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
             time.sleep(actual_wait)
             continue
 
-        if response.status_code == 422:
-            # Chat completions not supported, fall back to text generation
-            return _call_hf_text_generation(prompt)
-
         response.raise_for_status()
         result = response.json()
         return result["choices"][0]["message"]["content"].strip()
 
     raise Exception(f"HF API: Model failed to load after {max_retries + 1} attempts")
-
-
-def _call_hf_text_generation(prompt: str) -> str:
-    """
-    Fallback: Use HF text generation endpoint (non-chat format).
-    """
-    url = f"https://router.huggingface.co/hf-inference/models/{HF_MODEL}"
-    headers = {
-        "Authorization": f"Bearer {HF_API_TOKEN}",
-        "Content-Type": "application/json",
-    }
-    payload = {
-        "inputs": prompt,
-        "parameters": {
-            "max_new_tokens": 500,
-            "temperature": 0.8,
-            "return_full_text": False,
-        },
-    }
-
-    response = requests.post(url, headers=headers, json=payload, timeout=120)
-    response.raise_for_status()
-    result = response.json()
-    return result[0]["generated_text"].strip()
 
 
 def generate_caption(poster_filename: str, style: str = None) -> str:
