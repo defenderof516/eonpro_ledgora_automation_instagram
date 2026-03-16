@@ -49,7 +49,7 @@ def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
     Returns:
         Generated text
     """
-    url = f"https://api-inference.huggingface.co/models/{HF_MODEL}/v1/chat/completions"
+    url = f"https://router.huggingface.co/hf-inference/models/{HF_MODEL}/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {HF_API_TOKEN}",
         "Content-Type": "application/json",
@@ -93,7 +93,7 @@ def _call_hf_text_generation(prompt: str) -> str:
     """
     Fallback: Use HF text generation endpoint (non-chat format).
     """
-    url = f"https://api-inference.huggingface.co/models/{HF_MODEL}"
+    url = f"https://router.huggingface.co/hf-inference/models/{HF_MODEL}"
     headers = {
         "Authorization": f"Bearer {HF_API_TOKEN}",
         "Content-Type": "application/json",

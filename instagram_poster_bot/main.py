@@ -16,8 +16,9 @@ from config import (
     INSTAGRAM_ACCESS_TOKEN,
     INSTAGRAM_ACCOUNT_ID,
     HF_API_TOKEN,
-    GITHUB_REPO_OWNER,
-    GITHUB_REPO_NAME,
+    CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY,
+    CLOUDINARY_API_SECRET,
     MIN_DELAY_BETWEEN_POSTS_SECONDS,
     MAX_DELAY_BETWEEN_POSTS_SECONDS,
 )
@@ -50,8 +51,8 @@ def validate_config():
         errors.append("INSTAGRAM_ACCOUNT_ID is not set")
     if not HF_API_TOKEN:
         errors.append("HF_API_TOKEN is not set (get free token at huggingface.co/settings/tokens)")
-    if not GITHUB_REPO_OWNER or not GITHUB_REPO_NAME:
-        errors.append("GITHUB_REPO_OWNER/GITHUB_REPO_NAME not set (needed for image hosting)")
+    if not CLOUDINARY_CLOUD_NAME or not CLOUDINARY_API_KEY or not CLOUDINARY_API_SECRET:
+        errors.append("CLOUDINARY_CLOUD_NAME/CLOUDINARY_API_KEY/CLOUDINARY_API_SECRET not set (needed for image hosting)")
 
     if errors:
         print("❌ Configuration errors:")

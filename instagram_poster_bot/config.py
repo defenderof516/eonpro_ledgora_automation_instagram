@@ -13,7 +13,7 @@ GRAPH_API_BASE = f"https://graph.facebook.com/{GRAPH_API_VERSION}"
 
 # ─── Hugging Face AI (Free Tier) ─────────────────────────────────
 HF_API_TOKEN = os.environ.get("HF_API_TOKEN", "")
-HF_MODEL = os.environ.get("HF_MODEL", "mistralai/Mistral-7B-Instruct-v0.3")
+HF_MODEL = os.environ.get("HF_MODEL", "google/gemma-2-2b-it")
 
 # ─── Posting Configuration ────────────────────────────────────────
 MIN_POSTS_PER_DAY = 2
@@ -68,9 +68,7 @@ Download link: https://play.google.com/store/apps/details?id=com.eonpro.ledgora
 # ─── Discord Notifications (optional, free) ─────────────────────
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "")
 
-# ─── Image Hosting (GitHub raw URLs - completely free) ───────────
-# Uses raw.githubusercontent.com (images already in repo)
-# Falls back to GitHub API upload for private repos
-GITHUB_REPO_OWNER = os.environ.get("GITHUB_REPO_OWNER", "")
-GITHUB_REPO_NAME = os.environ.get("GITHUB_REPO_NAME", "")
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")  # Auto-provided by GitHub Actions
+# ─── Image Hosting (Cloudinary - free tier: 25GB) ────────────────
+CLOUDINARY_CLOUD_NAME = os.environ.get("CLOUDINARY_CLOUD_NAME", "")
+CLOUDINARY_API_KEY = os.environ.get("CLOUDINARY_API_KEY", "")
+CLOUDINARY_API_SECRET = os.environ.get("CLOUDINARY_API_SECRET", "")

@@ -1,119 +1,64 @@
 """
 Instagram Graph API integration for publishing posts.
-Handles image hosting via GitHub raw URLs and post creation via the Instagram Graph API.
+Handles image hosting via Cloudinary and post creation via the Instagram Graph API.
 """
 
+import hashlib
 import os
 import time
-import base64
-import urllib.parse
 import requests
 from config import (
     INSTAGRAM_ACCESS_TOKEN,
     INSTAGRAM_ACCOUNT_ID,
     GRAPH_API_BASE,
-    GITHUB_REPO_OWNER,
-    GITHUB_REPO_NAME,
-    GITHUB_TOKEN,
+    CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY,
+    CLOUDINARY_API_SECRET,
 )
 
 
 def get_public_image_url(image_path: str) -> str:
     """
-    Get a publicly accessible URL for the poster image.
-
-    Primary: Uses raw.githubusercontent.com (images already committed to repo - free).
-    Fallback: Uploads via GitHub API (for private repos).
+    Upload image to Cloudinary (signed upload) and return a publicly accessible URL.
 
     Args:
         image_path: Local path to the image file
 
     Returns:
-        Public URL of the image
+        Public URL of the uploaded image
     """
-    filename = os.path.basename(image_path)
-    encoded_filename = urllib.parse.quote(filename)
-
-    if not GITHUB_REPO_OWNER or not GITHUB_REPO_NAME:
+    if not CLOUDINARY_CLOUD_NAME or not CLOUDINARY_API_KEY or not CLOUDINARY_API_SECRET:
         raise Exception(
-            "GITHUB_REPO_OWNER and GITHUB_REPO_NAME are required for image hosting."
+            "CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET are required for image hosting."
         )
 
-    # Primary: raw.githubusercontent.com (works for public repos, no upload needed)
-    raw_url = (
-        f"https://raw.githubusercontent.com/{GITHUB_REPO_OWNER}/{GITHUB_REPO_NAME}"
-        f"/main/Eonpro_Ledgora_Posters/{encoded_filename}"
-    )
-
-    try:
-        resp = requests.head(raw_url, timeout=15, allow_redirects=True)
-        if resp.status_code == 200:
-            print(f"🔗 Image URL (GitHub raw): {raw_url}")
-            return raw_url
-    except Exception:
-        pass
-
-    # Fallback: Upload via GitHub API (works for private repos)
-    if GITHUB_TOKEN:
-        print("📤 Raw URL not accessible, uploading via GitHub API...")
-        return upload_image_via_github_api(
-            image_path, GITHUB_REPO_OWNER, GITHUB_REPO_NAME, GITHUB_TOKEN
-        )
-
-    raise Exception(
-        "Cannot get public image URL. Ensure the repo is public or GITHUB_TOKEN is set."
-    )
-
-
-def upload_image_via_github_api(
-    image_path: str, repo_owner: str, repo_name: str, github_token: str
-) -> str:
-    """
-    Upload image to GitHub repo and use raw URL.
-    Fallback for when raw.githubusercontent.com is not accessible (private repos).
-
-    Args:
-        image_path: Local path to the image file
-        repo_owner: GitHub repo owner
-        repo_name: GitHub repo name
-        github_token: GitHub token for authentication
-
-    Returns:
-        Raw GitHub URL for the image
-    """
     filename = os.path.basename(image_path)
-    upload_path = f"temp_uploads/{filename}"
+    print(f"📤 Uploading {filename} to Cloudinary...")
+
+    timestamp = str(int(time.time()))
+    signature = hashlib.sha1(
+        f"timestamp={timestamp}{CLOUDINARY_API_SECRET}".encode()
+    ).hexdigest()
+
+    url = f"https://api.cloudinary.com/v1_1/{CLOUDINARY_CLOUD_NAME}/image/upload"
 
     with open(image_path, "rb") as f:
-        content = base64.b64encode(f.read()).decode("utf-8")
+        response = requests.post(
+            url,
+            files={"file": f},
+            data={
+                "timestamp": timestamp,
+                "api_key": CLOUDINARY_API_KEY,
+                "signature": signature,
+            },
+            timeout=60,
+        )
 
-    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{upload_path}"
-    headers = {
-        "Authorization": f"Bearer {github_token}",
-        "Accept": "application/vnd.github.v3+json",
-    }
-
-    # Check if file already exists (get SHA for update)
-    existing = requests.get(url, headers=headers, timeout=30)
-    payload = {
-        "message": f"Upload poster: {filename}",
-        "content": content,
-        "branch": "main",
-    }
-    if existing.status_code == 200:
-        payload["sha"] = existing.json()["sha"]
-
-    response = requests.put(url, json=payload, headers=headers, timeout=120)
     response.raise_for_status()
-
-    # Use raw.githubusercontent.com URL
-    encoded_filename = urllib.parse.quote(filename)
-    raw_url = (
-        f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}"
-        f"/main/{upload_path}"
-    )
-    print(f"✅ Image uploaded to GitHub: {raw_url}")
-    return raw_url
+    result = response.json()
+    image_url = result["secure_url"]
+    print(f"🔗 Image URL (Cloudinary): {image_url}")
+    return image_url
 
 
 def create_instagram_media_container(image_url: str, caption: str) -> str:
