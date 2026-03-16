@@ -38,17 +38,17 @@ def get_random_hashtags(count: int = 15) -> str:
     return " ".join(selected)
 
 
-_cached_hf_url = None
+_cached_provider = None  # (url, provider_model_id)
 
 
-def _resolve_hf_url() -> str:
+def _resolve_hf_provider() -> tuple:
     """
-    Auto-discover which inference provider hosts the model and return the
-    correct chat completions URL.  Result is cached for the session.
+    Auto-discover which inference provider hosts the model.
+    Returns (chat_completions_url, provider_model_id).  Cached for the session.
     """
-    global _cached_hf_url
-    if _cached_hf_url:
-        return _cached_hf_url
+    global _cached_provider
+    if _cached_provider:
+        return _cached_provider
 
     headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
 
@@ -65,12 +65,13 @@ def _resolve_hf_url() -> str:
         for provider_name, info in providers.items():
             if info.get("status") == "live" and info.get("task") == "conversational":
                 provider_model_id = info["providerId"]
-                _cached_hf_url = (
+                url = (
                     f"https://router.huggingface.co/{provider_name}"
                     f"/models/{provider_model_id}/v1/chat/completions"
                 )
-                print(f"🤖 Using HF provider: {provider_name}")
-                return _cached_hf_url
+                _cached_provider = (url, provider_model_id)
+                print(f"🤖 Using HF provider: {provider_name} → {provider_model_id}")
+                return _cached_provider
     except Exception as e:
         print(f"⚠️ Provider discovery failed: {e}")
 
@@ -88,13 +89,13 @@ def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
     Returns:
         Generated text
     """
-    url = _resolve_hf_url()
+    url, provider_model_id = _resolve_hf_provider()
     headers = {
         "Authorization": f"Bearer {HF_API_TOKEN}",
         "Content-Type": "application/json",
     }
     payload = {
-        "model": HF_MODEL,
+        "model": provider_model_id,
         "messages": [
             {"role": "user", "content": prompt}
         ],
@@ -117,6 +118,8 @@ def _call_hf_api(prompt: str, max_retries: int = 2) -> str:
             time.sleep(actual_wait)
             continue
 
+        if not response.ok:
+            print(f"⚠️ HF API {response.status_code}: {response.text[:200]}")
         response.raise_for_status()
         result = response.json()
         return result["choices"][0]["message"]["content"].strip()
