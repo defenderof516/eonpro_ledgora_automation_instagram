@@ -1,7 +1,9 @@
 {
   "posted": [
     "scene3_features_16-24s.png",
-    "poster06_three_themes.png"
+    "poster06_three_themes.png",
+    "p03_privacy_vault.png",
+    "p08_know_where_you_earn.png"
   ],
   "history": [
     {
@@ -17,9 +19,23 @@
       "media_id": "17913282873338731",
       "caption_preview": "💰 Managing your money just got easier! Check out three themes in Ledgora.\n\nTrack every rupee, analyz...",
       "cycle": 1
+    },
+    {
+      "filename": "p03_privacy_vault.png",
+      "posted_at": "2026-03-20T04:26:16.095373+00:00",
+      "media_id": "17875475397550706",
+      "caption_preview": "Take control of your financial freedom 📈\nImagine having a secure space where your financial informat...",
+      "cycle": 1
+    },
+    {
+      "filename": "p08_know_where_you_earn.png",
+      "posted_at": "2026-03-20T05:26:44.252358+00:00",
+      "media_id": "18003031412903386",
+      "caption_preview": "Life is unpredictable, but your finances don't have to be. Do you remember the last time you were ab...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-03-15T09:32:51.526137+00:00",
-  "total_posts": 2,
+  "last_run": "2026-03-20T05:26:44.252372+00:00",
+  "total_posts": 4,
   "cycle": 1
 }
