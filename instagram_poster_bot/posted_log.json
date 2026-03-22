@@ -3,7 +3,9 @@
     "scene3_features_16-24s.png",
     "poster06_three_themes.png",
     "p03_privacy_vault.png",
-    "p08_know_where_you_earn.png"
+    "p08_know_where_you_earn.png",
+    "p01_brand_identity.png",
+    "scene2_the_reveal_8-16s.png"
   ],
   "history": [
     {
@@ -33,9 +35,23 @@
       "media_id": "18003031412903386",
       "caption_preview": "Life is unpredictable, but your finances don't have to be. Do you remember the last time you were ab...",
       "cycle": 1
+    },
+    {
+      "filename": "p01_brand_identity.png",
+      "posted_at": "2026-03-22T04:33:03.856970+00:00",
+      "media_id": "18106796467855359",
+      "caption_preview": "\"Your financial identity is more than just a number - it's a story of your choices, your habits, and...",
+      "cycle": 1
+    },
+    {
+      "filename": "scene2_the_reveal_8-16s.png",
+      "posted_at": "2026-03-22T05:48:49.015766+00:00",
+      "media_id": "17967401034022949",
+      "caption_preview": "\"Ah, the moment of truth - when you finally take a close look at your finances and see where your mo...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-03-20T05:26:44.252372+00:00",
-  "total_posts": 4,
+  "last_run": "2026-03-22T05:48:49.015780+00:00",
+  "total_posts": 6,
   "cycle": 1
 }
