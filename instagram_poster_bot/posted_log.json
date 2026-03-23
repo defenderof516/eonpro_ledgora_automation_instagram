@@ -5,7 +5,9 @@
     "p03_privacy_vault.png",
     "p08_know_where_you_earn.png",
     "p01_brand_identity.png",
-    "scene2_the_reveal_8-16s.png"
+    "scene2_the_reveal_8-16s.png",
+    "p02_dashboard_overview.png",
+    "poster10_go_premium.png"
   ],
   "history": [
     {
@@ -49,9 +51,23 @@
       "media_id": "17967401034022949",
       "caption_preview": "\"Ah, the moment of truth - when you finally take a close look at your finances and see where your mo...",
       "cycle": 1
+    },
+    {
+      "filename": "p02_dashboard_overview.png",
+      "posted_at": "2026-03-23T04:41:26.974276+00:00",
+      "media_id": "18098228212975782",
+      "caption_preview": "\"Get a clear picture of your finances with our dashboard overview 📊. This feature is a game-changer ...",
+      "cycle": 1
+    },
+    {
+      "filename": "poster10_go_premium.png",
+      "posted_at": "2026-03-23T05:27:12.364595+00:00",
+      "media_id": "18072517970555328",
+      "caption_preview": "I'm stuck in a cycle of forgotten bills and expenses piling up on my kitchen counter 📝. But what if ...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-03-22T05:48:49.015780+00:00",
-  "total_posts": 6,
+  "last_run": "2026-03-23T05:27:12.364609+00:00",
+  "total_posts": 8,
   "cycle": 1
 }
