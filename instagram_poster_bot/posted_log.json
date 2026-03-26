@@ -9,7 +9,9 @@
     "p02_dashboard_overview.png",
     "poster10_go_premium.png",
     "poster05_smart_categories.png",
-    "p09_total_balance.png"
+    "p09_total_balance.png",
+    "p17_top_spending.png",
+    "p08_premium_analytics.png"
   ],
   "history": [
     {
@@ -81,9 +83,23 @@
       "media_id": "17989581917949484",
       "caption_preview": "Stay on top of your finances with Ledgora's Total Balance feature! 📊 With this powerful tool, you'll...",
       "cycle": 1
+    },
+    {
+      "filename": "p17_top_spending.png",
+      "posted_at": "2026-03-26T04:55:46.645470+00:00",
+      "media_id": "17919737082285687",
+      "caption_preview": "\"Ever wondered where your hard-earned money goes? 📈 Ledgora's top spending feature gives you a cryst...",
+      "cycle": 1
+    },
+    {
+      "filename": "p08_premium_analytics.png",
+      "posted_at": "2026-03-26T06:09:58.935799+00:00",
+      "media_id": "18459743185096627",
+      "caption_preview": "\"Did you know that analyzing your spending patterns can help you save up to 30% of your income? 🤑 Ou...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-03-24T05:17:56.494838+00:00",
-  "total_posts": 10,
+  "last_run": "2026-03-26T06:09:58.935813+00:00",
+  "total_posts": 12,
   "cycle": 1
 }
