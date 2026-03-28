@@ -11,7 +11,9 @@
     "poster05_smart_categories.png",
     "p09_total_balance.png",
     "p17_top_spending.png",
-    "p08_premium_analytics.png"
+    "p08_premium_analytics.png",
+    "p01_cash_in_cash_out.png",
+    "p01_dashboard.png"
   ],
   "history": [
     {
@@ -97,9 +99,23 @@
       "media_id": "18459743185096627",
       "caption_preview": "\"Did you know that analyzing your spending patterns can help you save up to 30% of your income? 🤑 Ou...",
       "cycle": 1
+    },
+    {
+      "filename": "p01_cash_in_cash_out.png",
+      "posted_at": "2026-03-28T04:33:05.032057+00:00",
+      "media_id": "18077253200139050",
+      "caption_preview": "\"Hey friends, let's talk about cash flow! 📊 You know how sometimes you see a huge cash outburst on y...",
+      "cycle": 1
+    },
+    {
+      "filename": "p01_dashboard.png",
+      "posted_at": "2026-03-28T05:33:36.977564+00:00",
+      "media_id": "18093567104024227",
+      "caption_preview": "\"Ah, the dashboard - your one-stop-shop for financial clarity. Imagine having all your income and ex...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-03-26T06:09:58.935813+00:00",
-  "total_posts": 12,
+  "last_run": "2026-03-28T05:33:36.977579+00:00",
+  "total_posts": 14,
   "cycle": 1
 }
