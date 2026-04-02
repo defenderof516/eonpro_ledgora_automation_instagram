@@ -13,7 +13,9 @@
     "p17_top_spending.png",
     "p08_premium_analytics.png",
     "p01_cash_in_cash_out.png",
-    "p01_dashboard.png"
+    "p01_dashboard.png",
+    "p02_share_beautifully.png",
+    "p20_freelancer_life.png"
   ],
   "history": [
     {
@@ -113,9 +115,23 @@
       "media_id": "18093567104024227",
       "caption_preview": "\"Ah, the dashboard - your one-stop-shop for financial clarity. Imagine having all your income and ex...",
       "cycle": 1
+    },
+    {
+      "filename": "p02_share_beautifully.png",
+      "posted_at": "2026-04-02T04:41:37.081807+00:00",
+      "media_id": "17945828823138630",
+      "caption_preview": "\"Ever feel like you're drowning in a sea of receipts and invoices? 💸 I was there too, until I discov...",
+      "cycle": 1
+    },
+    {
+      "filename": "p20_freelancer_life.png",
+      "posted_at": "2026-04-02T05:54:41.370185+00:00",
+      "media_id": "18346738096213915",
+      "caption_preview": "As a freelancer, managing your finances can be a challenge, but it doesn't have to be. With Ledgora,...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-03-28T05:33:36.977579+00:00",
-  "total_posts": 14,
+  "last_run": "2026-04-02T05:54:41.370199+00:00",
+  "total_posts": 16,
   "cycle": 1
 }
