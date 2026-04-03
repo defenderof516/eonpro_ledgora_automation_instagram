@@ -15,7 +15,9 @@
     "p01_cash_in_cash_out.png",
     "p01_dashboard.png",
     "p02_share_beautifully.png",
-    "p20_freelancer_life.png"
+    "p20_freelancer_life.png",
+    "poster01_hero_showcase.png",
+    "p07_two_taps_done.png"
   ],
   "history": [
     {
@@ -129,9 +131,23 @@
       "media_id": "18346738096213915",
       "caption_preview": "As a freelancer, managing your finances can be a challenge, but it doesn't have to be. With Ledgora,...",
       "cycle": 1
+    },
+    {
+      "filename": "poster01_hero_showcase.png",
+      "posted_at": "2026-04-03T04:42:43.091181+00:00",
+      "media_id": "17935835568206283",
+      "caption_preview": "\"Meet Maria, our hero who's taking control of her finances with Ledgora! 💸 With our lightning-fast t...",
+      "cycle": 1
+    },
+    {
+      "filename": "p07_two_taps_done.png",
+      "posted_at": "2026-04-03T05:15:36.877899+00:00",
+      "media_id": "18010929572852878",
+      "caption_preview": "How many taps does it take to take control of your finances?  Just two, with Ledgora's lightning-fas...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-04-02T05:54:41.370199+00:00",
-  "total_posts": 16,
+  "last_run": "2026-04-03T05:15:36.877909+00:00",
+  "total_posts": 18,
   "cycle": 1
 }
