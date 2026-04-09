@@ -19,7 +19,9 @@
     "poster01_hero_showcase.png",
     "p07_two_taps_done.png",
     "p13_expense_breakdown.png",
-    "p08_detailed_receipts.png"
+    "p08_detailed_receipts.png",
+    "p04_custom_categories.png",
+    "p07_gorgeous_themes.png"
   ],
   "history": [
     {
@@ -161,9 +163,23 @@
       "media_id": "18067772606657870",
       "caption_preview": "\"Got a tip for you: save those receipts! Having detailed receipts can make all the difference in tra...",
       "cycle": 1
+    },
+    {
+      "filename": "p04_custom_categories.png",
+      "posted_at": "2026-04-09T04:57:51.006577+00:00",
+      "media_id": "18580632847007003",
+      "caption_preview": "\"Take control of your finances with Ledgora's custom categories 📈. No one-size-fits-all solution her...",
+      "cycle": 1
+    },
+    {
+      "filename": "p07_gorgeous_themes.png",
+      "posted_at": "2026-04-09T06:09:04.892734+00:00",
+      "media_id": "18013529843683706",
+      "caption_preview": "\"Hey friends, I'm obsessed with how much more enjoyable tracking my finances is with Ledgora's gorge...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-04-07T06:22:33.536590+00:00",
-  "total_posts": 20,
+  "last_run": "2026-04-09T06:09:04.892752+00:00",
+  "total_posts": 22,
   "cycle": 1
 }
