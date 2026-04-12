@@ -21,7 +21,9 @@
     "p13_expense_breakdown.png",
     "p08_detailed_receipts.png",
     "p04_custom_categories.png",
-    "p07_gorgeous_themes.png"
+    "p07_gorgeous_themes.png",
+    "p01_daily_transactions.png",
+    "p06_analytics.png"
   ],
   "history": [
     {
@@ -177,9 +179,23 @@
       "media_id": "18013529843683706",
       "caption_preview": "\"Hey friends, I'm obsessed with how much more enjoyable tracking my finances is with Ledgora's gorge...",
       "cycle": 1
+    },
+    {
+      "filename": "p01_daily_transactions.png",
+      "posted_at": "2026-04-12T05:11:19.783127+00:00",
+      "media_id": "18208997638334277",
+      "caption_preview": "\"Track your daily transactions like a pro with Ledgora! 💡 Did you know that writing down every singl...",
+      "cycle": 1
+    },
+    {
+      "filename": "p06_analytics.png",
+      "posted_at": "2026-04-12T06:02:33.750437+00:00",
+      "media_id": "17930399058072120",
+      "caption_preview": "Hey friends, let's talk about understanding where your money is going. I mean, who doesn't want to k...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-04-09T06:09:04.892752+00:00",
-  "total_posts": 22,
+  "last_run": "2026-04-12T06:02:33.750452+00:00",
+  "total_posts": 24,
   "cycle": 1
 }
