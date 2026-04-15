@@ -23,7 +23,11 @@
     "p04_custom_categories.png",
     "p07_gorgeous_themes.png",
     "p01_daily_transactions.png",
-    "p06_analytics.png"
+    "p06_analytics.png",
+    "p19_morning_routine.png",
+    "p10_interface_elegance.png",
+    "poster09_cloud_backup.png",
+    "p10_financial_timeline.png"
   ],
   "history": [
     {
@@ -193,9 +197,37 @@
       "media_id": "17930399058072120",
       "caption_preview": "Hey friends, let's talk about understanding where your money is going. I mean, who doesn't want to k...",
       "cycle": 1
+    },
+    {
+      "filename": "p19_morning_routine.png",
+      "posted_at": "2026-04-15T05:11:16.839605+00:00",
+      "media_id": "17891015205461029",
+      "caption_preview": "Start your day with a clear financial picture, thanks to Ledgora's powerful morning routine feature....",
+      "cycle": 1
+    },
+    {
+      "filename": "p10_interface_elegance.png",
+      "posted_at": "2026-04-15T05:44:59.133747+00:00",
+      "media_id": "17974421615862913",
+      "caption_preview": "\"Take your finances to the next level with Ledgora's interface elegance 📈. Our modern, smooth UI mak...",
+      "cycle": 1
+    },
+    {
+      "filename": "poster09_cloud_backup.png",
+      "posted_at": "2026-04-15T06:24:35.881428+00:00",
+      "media_id": "18057788306478360",
+      "caption_preview": "\"Take control of your finances and live life on your terms! Imagine having peace of mind knowing you...",
+      "cycle": 1
+    },
+    {
+      "filename": "p10_financial_timeline.png",
+      "posted_at": "2026-04-15T07:02:38.189312+00:00",
+      "media_id": "17986830359974447",
+      "caption_preview": "Financial freedom starts with a clear picture of your past. Creating a financial timeline can be ove...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-04-12T06:02:33.750452+00:00",
-  "total_posts": 24,
+  "last_run": "2026-04-15T07:02:38.189327+00:00",
+  "total_posts": 28,
   "cycle": 1
 }
