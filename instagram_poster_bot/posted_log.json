@@ -27,7 +27,10 @@
     "p19_morning_routine.png",
     "p10_interface_elegance.png",
     "poster09_cloud_backup.png",
-    "p10_financial_timeline.png"
+    "p10_financial_timeline.png",
+    "p07_analytics_overview.png",
+    "p11_weekly_trends.png",
+    "poster03_analytics_insights.png"
   ],
   "history": [
     {
@@ -225,9 +228,30 @@
       "media_id": "17986830359974447",
       "caption_preview": "Financial freedom starts with a clear picture of your past. Creating a financial timeline can be ove...",
       "cycle": 1
+    },
+    {
+      "filename": "p07_analytics_overview.png",
+      "posted_at": "2026-04-20T05:26:04.354141+00:00",
+      "media_id": "17990407631953627",
+      "caption_preview": "Ever wondered where your money goes each month? Our analytics overview gives you a clear picture of ...",
+      "cycle": 1
+    },
+    {
+      "filename": "p11_weekly_trends.png",
+      "posted_at": "2026-04-20T06:08:06.290750+00:00",
+      "media_id": "17954113716067923",
+      "caption_preview": "Get a pulse on your finances with Ledgora's weekly trends feature 📈. See how your spending patterns ...",
+      "cycle": 1
+    },
+    {
+      "filename": "poster03_analytics_insights.png",
+      "posted_at": "2026-04-20T07:08:00.279258+00:00",
+      "media_id": "17850016401680175",
+      "caption_preview": "\"The power of numbers: our analytics insights help you track your spending, identify trends, and mak...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-04-15T07:02:38.189327+00:00",
-  "total_posts": 28,
+  "last_run": "2026-04-20T07:08:00.279273+00:00",
+  "total_posts": 31,
   "cycle": 1
 }
