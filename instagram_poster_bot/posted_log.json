@@ -30,7 +30,9 @@
     "p10_financial_timeline.png",
     "p07_analytics_overview.png",
     "p11_weekly_trends.png",
-    "poster03_analytics_insights.png"
+    "poster03_analytics_insights.png",
+    "p06_your_balance.png",
+    "poster02_privacy_security.png"
   ],
   "history": [
     {
@@ -249,9 +251,23 @@
       "media_id": "17850016401680175",
       "caption_preview": "\"The power of numbers: our analytics insights help you track your spending, identify trends, and mak...",
       "cycle": 1
+    },
+    {
+      "filename": "p06_your_balance.png",
+      "posted_at": "2026-04-21T05:14:26.965899+00:00",
+      "media_id": "18457279828111889",
+      "caption_preview": "Your balance is a beautiful thing - it's like a dance between income and expenses, and you're the ch...",
+      "cycle": 1
+    },
+    {
+      "filename": "poster02_privacy_security.png",
+      "posted_at": "2026-04-21T06:35:23.407157+00:00",
+      "media_id": "18160446388442171",
+      "caption_preview": "How private is your personal financial data? 🤫 Are you aware that some apps require an account to wo...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-04-20T07:08:00.279273+00:00",
-  "total_posts": 31,
+  "last_run": "2026-04-21T06:35:23.407173+00:00",
+  "total_posts": 33,
   "cycle": 1
 }
