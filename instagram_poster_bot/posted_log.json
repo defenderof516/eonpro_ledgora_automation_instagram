@@ -36,7 +36,9 @@
     "poster04_payment_reminders.png",
     "p10_go_premium.png",
     "poster07_offline_first.png",
-    "p18_big_picture.png"
+    "p18_big_picture.png",
+    "p16_data_donuts.png",
+    "p09_track_every_rupee.png"
   ],
   "history": [
     {
@@ -297,9 +299,23 @@
       "media_id": "17967868803028767",
       "caption_preview": "\"The Big Picture: Taking Control of Your Finances\n\nI remember when I first started using Ledgora, I ...",
       "cycle": 1
+    },
+    {
+      "filename": "p16_data_donuts.png",
+      "posted_at": "2026-04-25T05:00:03.323149+00:00",
+      "media_id": "18119202874639808",
+      "caption_preview": "\"Data Donuts are a thing, and they're not as sweet as they sound 🍩. Think of them as little circular...",
+      "cycle": 1
+    },
+    {
+      "filename": "p09_track_every_rupee.png",
+      "posted_at": "2026-04-25T06:24:26.460057+00:00",
+      "media_id": "18075610982203058",
+      "caption_preview": "Let's get real, friends - who among us hasn't lost track of our expenses? 🙋‍♀️ It's like a big black...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-04-23T06:38:49.176195+00:00",
-  "total_posts": 37,
+  "last_run": "2026-04-25T06:24:26.460072+00:00",
+  "total_posts": 39,
   "cycle": 1
 }
