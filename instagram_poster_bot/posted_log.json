@@ -42,7 +42,9 @@
     "p05_reports.png",
     "p03_instant_search.png",
     "p13_backup_restore.png",
-    "p06_categories.png"
+    "p06_categories.png",
+    "p04_transaction_details.png",
+    "p05_professional_reports.png"
   ],
   "history": [
     {
@@ -345,9 +347,23 @@
       "media_id": "17997696278760562",
       "caption_preview": "Categories, categories everywhere - but are you using them to your advantage? 🤔 In Ledgora, we make ...",
       "cycle": 1
+    },
+    {
+      "filename": "p04_transaction_details.png",
+      "posted_at": "2026-05-03T05:43:23.063219+00:00",
+      "media_id": "18097777819863110",
+      "caption_preview": "\"Ever struggled to make sense of a messy bank statement? You're not alone 🤑. I used to be terrible a...",
+      "cycle": 1
+    },
+    {
+      "filename": "p05_professional_reports.png",
+      "posted_at": "2026-05-03T07:11:42.726789+00:00",
+      "media_id": "18089047616195851",
+      "caption_preview": "\"Ever wondered what your money story looks like? 📊 Our Ledger app lets you create professional PDF r...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-04-29T06:19:43.343534+00:00",
-  "total_posts": 43,
+  "last_run": "2026-05-03T07:11:42.726804+00:00",
+  "total_posts": 45,
   "cycle": 1
 }
