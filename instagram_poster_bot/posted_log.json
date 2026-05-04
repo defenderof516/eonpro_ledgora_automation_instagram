@@ -44,7 +44,9 @@
     "p13_backup_restore.png",
     "p06_categories.png",
     "p04_transaction_details.png",
-    "p05_professional_reports.png"
+    "p05_professional_reports.png",
+    "p22_shop_smarter.png",
+    "p14_money_in_motion.png"
   ],
   "history": [
     {
@@ -361,9 +363,23 @@
       "media_id": "18089047616195851",
       "caption_preview": "\"Ever wondered what your money story looks like? 📊 Our Ledger app lets you create professional PDF r...",
       "cycle": 1
+    },
+    {
+      "filename": "p22_shop_smarter.png",
+      "posted_at": "2026-05-04T05:48:50.544307+00:00",
+      "media_id": "18437267848140962",
+      "caption_preview": "Shop smarter by tracking every dollar effortlessly with Ledgora! 💡\n\nSee exactly where your money goe...",
+      "cycle": 1
+    },
+    {
+      "filename": "p14_money_in_motion.png",
+      "posted_at": "2026-05-04T06:54:36.140143+00:00",
+      "media_id": "17868409983528637",
+      "caption_preview": "Where does your money go each month? 💸 Ledgora helps you see your cash flow in motion—track spending...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-05-03T07:11:42.726804+00:00",
-  "total_posts": 45,
+  "last_run": "2026-05-04T06:54:36.140161+00:00",
+  "total_posts": 47,
   "cycle": 1
 }
