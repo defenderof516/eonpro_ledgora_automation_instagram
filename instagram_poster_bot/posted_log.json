@@ -46,7 +46,11 @@
     "p04_transaction_details.png",
     "p05_professional_reports.png",
     "p22_shop_smarter.png",
-    "p14_money_in_motion.png"
+    "p14_money_in_motion.png",
+    "p15_savings_grow.png",
+    "p12_month_over_month.png",
+    "p03_themes.png",
+    "p21_student_budget.png"
   ],
   "history": [
     {
@@ -377,9 +381,37 @@
       "media_id": "17868409983528637",
       "caption_preview": "Where does your money go each month? 💸 Ledgora helps you see your cash flow in motion—track spending...",
       "cycle": 1
+    },
+    {
+      "filename": "p15_savings_grow.png",
+      "posted_at": "2026-05-06T05:43:25.936411+00:00",
+      "media_id": "17892985356462072",
+      "caption_preview": "Savings grow. 💸 In Ledgora, our offline-first app, you can track every transaction instantly and mon...",
+      "cycle": 1
+    },
+    {
+      "filename": "p12_month_over_month.png",
+      "posted_at": "2026-05-06T06:18:23.063445+00:00",
+      "media_id": "18116480944684154",
+      "caption_preview": "Take control of your finances and unlock your freedom. Month over month, you're one step closer to a...",
+      "cycle": 1
+    },
+    {
+      "filename": "p03_themes.png",
+      "posted_at": "2026-05-06T06:46:26.415606+00:00",
+      "media_id": "18109681162919522",
+      "caption_preview": "\"Ready to take your personal finance to the next level? 📈 With Ledgora, you can track your income an...",
+      "cycle": 1
+    },
+    {
+      "filename": "p21_student_budget.png",
+      "posted_at": "2026-05-06T07:27:49.329929+00:00",
+      "media_id": "17878796442580656",
+      "caption_preview": "\"Creating a student budget can be overwhelming, but it's a crucial step in managing your finances pr...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-05-04T06:54:36.140161+00:00",
-  "total_posts": 47,
+  "last_run": "2026-05-06T07:27:49.329944+00:00",
+  "total_posts": 51,
   "cycle": 1
 }
