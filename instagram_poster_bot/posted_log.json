@@ -50,7 +50,9 @@
     "p15_savings_grow.png",
     "p12_month_over_month.png",
     "p03_themes.png",
-    "p21_student_budget.png"
+    "p21_student_budget.png",
+    "p16_spending_patterns.png",
+    "p02_smart_reminders.png"
   ],
   "history": [
     {
@@ -409,9 +411,23 @@
       "media_id": "17878796442580656",
       "caption_preview": "\"Creating a student budget can be overwhelming, but it's a crucial step in managing your finances pr...",
       "cycle": 1
+    },
+    {
+      "filename": "p16_spending_patterns.png",
+      "posted_at": "2026-05-07T05:46:27.596833+00:00",
+      "media_id": "17950653890979300",
+      "caption_preview": "\"Hey friends, let's get real about your spending patterns 📊. Our app can help you uncover where your...",
+      "cycle": 1
+    },
+    {
+      "filename": "p02_smart_reminders.png",
+      "posted_at": "2026-05-07T06:54:06.615692+00:00",
+      "media_id": "18064511507400819",
+      "caption_preview": "\"Staying on top of your finances can be as simple as setting a reminder 📅. With Ledgora's smart remi...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-05-06T07:27:49.329944+00:00",
-  "total_posts": 51,
+  "last_run": "2026-05-07T06:54:06.615705+00:00",
+  "total_posts": 53,
   "cycle": 1
 }
