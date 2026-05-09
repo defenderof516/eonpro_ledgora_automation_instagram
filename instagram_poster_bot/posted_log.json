@@ -54,7 +54,9 @@
     "p16_spending_patterns.png",
     "p02_smart_reminders.png",
     "p06_beautiful_analytics.png",
-    "p15_financial_freedom.png"
+    "p15_financial_freedom.png",
+    "p11_quick_add.png",
+    "p05_speed_tracking.png"
   ],
   "history": [
     {
@@ -441,9 +443,23 @@
       "media_id": "18218761078321696",
       "caption_preview": "Imagine having the freedom to live life on your own terms, without the weight of debt and financial ...",
       "cycle": 1
+    },
+    {
+      "filename": "p11_quick_add.png",
+      "posted_at": "2026-05-09T05:35:09.270034+00:00",
+      "media_id": "17927458596282214",
+      "caption_preview": "\"Hey friends, let's talk about quick add! 📝 With Ledgora, you can add transactions in lightning fast...",
+      "cycle": 1
+    },
+    {
+      "filename": "p05_speed_tracking.png",
+      "posted_at": "2026-05-09T07:00:29.412497+00:00",
+      "media_id": "18066613019364157",
+      "caption_preview": "Speed up your finances with Ledgora's speed tracking feature 🕒️! No more tedious hours spent on spre...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-05-08T06:26:15.194682+00:00",
-  "total_posts": 55,
+  "last_run": "2026-05-09T07:00:29.412514+00:00",
+  "total_posts": 57,
   "cycle": 1
 }
