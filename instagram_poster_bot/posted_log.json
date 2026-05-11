@@ -56,7 +56,9 @@
     "p06_beautiful_analytics.png",
     "p15_financial_freedom.png",
     "p11_quick_add.png",
-    "p05_speed_tracking.png"
+    "p05_speed_tracking.png",
+    "p02_share.png",
+    "p14_effortless_sync.png"
   ],
   "history": [
     {
@@ -457,9 +459,23 @@
       "media_id": "18066613019364157",
       "caption_preview": "Speed up your finances with Ledgora's speed tracking feature 🕒️! No more tedious hours spent on spre...",
       "cycle": 1
+    },
+    {
+      "filename": "p02_share.png",
+      "posted_at": "2026-05-11T06:22:27.942381+00:00",
+      "media_id": "18050715824743006",
+      "caption_preview": "Ever struggled to keep track of your finances for a friend or family member? 🤔 I get it, it can be o...",
+      "cycle": 1
+    },
+    {
+      "filename": "p14_effortless_sync.png",
+      "posted_at": "2026-05-11T07:23:16.107188+00:00",
+      "media_id": "18370622224206210",
+      "caption_preview": "Life hack: no more stressful sync-up sessions after a weekend away 🌴. With Ledgora, your transaction...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-05-09T07:00:29.412514+00:00",
-  "total_posts": 57,
+  "last_run": "2026-05-11T07:23:16.107204+00:00",
+  "total_posts": 59,
   "cycle": 1
 }
