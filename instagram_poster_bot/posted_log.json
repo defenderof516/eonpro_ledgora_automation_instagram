@@ -58,7 +58,9 @@
     "p11_quick_add.png",
     "p05_speed_tracking.png",
     "p02_share.png",
-    "p14_effortless_sync.png"
+    "p14_effortless_sync.png",
+    "scene4_cta_close_24-30s.png",
+    "p09_expense_security.png"
   ],
   "history": [
     {
@@ -473,9 +475,23 @@
       "media_id": "18370622224206210",
       "caption_preview": "Life hack: no more stressful sync-up sessions after a weekend away 🌴. With Ledgora, your transaction...",
       "cycle": 1
+    },
+    {
+      "filename": "scene4_cta_close_24-30s.png",
+      "posted_at": "2026-05-14T06:02:27.034582+00:00",
+      "media_id": "18083451176114654",
+      "caption_preview": "Let's face it, managing your finances can be a real challenge. There you are, trying to make ends me...",
+      "cycle": 1
+    },
+    {
+      "filename": "p09_expense_security.png",
+      "posted_at": "2026-05-14T06:36:17.451349+00:00",
+      "media_id": "18187196443374542",
+      "caption_preview": "Protect your expenses from prying eyes with Ledgora's offline-first security. 🌐 Our app lets you tra...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-05-11T07:23:16.107204+00:00",
-  "total_posts": 59,
+  "last_run": "2026-05-14T06:36:17.451364+00:00",
+  "total_posts": 61,
   "cycle": 1
 }
