@@ -60,7 +60,9 @@
     "p02_share.png",
     "p14_effortless_sync.png",
     "scene4_cta_close_24-30s.png",
-    "p09_expense_security.png"
+    "p09_expense_security.png",
+    "p04_offline_first.png",
+    "scene1_the_hook_0-8s.png"
   ],
   "history": [
     {
@@ -489,9 +491,23 @@
       "media_id": "18187196443374542",
       "caption_preview": "Protect your expenses from prying eyes with Ledgora's offline-first security. 🌐 Our app lets you tra...",
       "cycle": 1
+    },
+    {
+      "filename": "p04_offline_first.png",
+      "posted_at": "2026-05-15T06:09:14.062816+00:00",
+      "media_id": "18102408073893615",
+      "caption_preview": "Imagine having complete control over your financial data, without relying on unreliable internet con...",
+      "cycle": 1
+    },
+    {
+      "filename": "scene1_the_hook_0-8s.png",
+      "posted_at": "2026-05-15T06:56:00.262586+00:00",
+      "media_id": "18067711421349323",
+      "caption_preview": "We've all been there - struggling to keep track of our expenses, making it harder to stick to our bu...",
+      "cycle": 1
     }
   ],
-  "last_run": "2026-05-14T06:36:17.451364+00:00",
-  "total_posts": 61,
+  "last_run": "2026-05-15T06:56:00.262601+00:00",
+  "total_posts": 63,
   "cycle": 1
 }
